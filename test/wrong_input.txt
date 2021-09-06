@@ -1,0 +1,9 @@
+program test : var oneint; 
+{
+	print("hello world");
+    if ( 3 > (3 > 2) ) {
+    	
+    } else {
+    	print("bye");
+    };
+}
