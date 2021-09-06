@@ -1,0 +1,70 @@
+LittleDuck {
+  
+  PROGRAM 
+  	= program id ":" VARS? BLOCK
+  
+  VARS
+  	= var id ListOf<id, ","> ":" TYPE ";"
+  
+  TYPE = int | float
+  
+  BLOCK 
+  	= "{" STMT* "}"
+   
+  STMT = ASSIGN | PRINT | CONDITION
+  
+  ASSIGN = id "=" EXPRESSION ";"
+  
+  PRINT = print "(" (EXPRESSION | ctstring)+ ")" ";"
+  
+  EXPRESSION = EXP comparison EXP
+  EXP = NonemptyListOf<TERM, ("+" | "-")>
+  TERM = NonemptyListOf<FACTOR, ("*" | "/")>
+  
+  CONDITION = if "(" EXPRESSION ")" BLOCK else BLOCK ";" -- ifelse
+  			| if "(" EXPRESSION ")" BLOCK ";" -- if
+  
+  FACTOR = "(" EXPRESSION ")" --parens
+  		| "+" CTVAR -- plus
+        | "-" CTVAR -- minus
+        | CTVAR
+   
+  CTVAR = id | ctfloat | ctint
+  
+  digits = digit+
+  
+  letters = letter+
+ 
+  comparison
+  	= ">" 
+  	| "<" 
+    | "<>"
+    | "<=" 
+    | ">=" 
+    | "==" 
+    | "!="
+  
+  id = letter(alnum)*
+  
+  ctint
+  	= digits("E"("+-")?digits)?
+    
+  ctfloat
+  	= digits("."digits)?("E"("+-")?digits)?
+  
+  ctstring = "\"" (~"\"" any)* "\""
+  
+  program = "program"
+  
+  if = "if"
+  
+  else = "else"
+  
+  var = "var"
+  
+  int = "int"
+  
+  float = "float"
+  
+  print = "print"
+}

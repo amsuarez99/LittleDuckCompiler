@@ -1,0 +1,71 @@
+{
+  "version": "0.1.0",
+  "license": "MIT",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "files": [
+    "dist",
+    "src"
+  ],
+  "engines": {
+    "node": ">=10"
+  },
+  "scripts": {
+    "start": "tsdx watch",
+    "build": "tsdx build",
+    "test": "tsdx test",
+    "test:watch": "yarn test --watchAll",
+    "lint": "tsdx lint",
+    "prepare": "tsdx build",
+    "size": "size-limit",
+    "analyze": "size-limit --why"
+  },
+  "peerDependencies": {},
+  "husky": {
+    "hooks": {
+      "pre-commit": "tsdx lint"
+    }
+  },
+  "prettier": {
+    "arrowParens": "always",
+    "bracketSpacing": true,
+    "embeddedLanguageFormatting": "auto",
+    "insertPragma": false,
+    "printWidth": 120,
+    "proseWrap": "preserve",
+    "quoteProps": "as-needed",
+    "requirePragma": false,
+    "semi": false,
+    "singleQuote": true,
+    "tabWidth": 2,
+    "trailingComma": "all",
+    "useTabs": false
+  },
+  "name": "littleduck",
+  "author": "Adrián Marcelo Suárez Ponce",
+  "module": "dist/littleduck.esm.js",
+  "size-limit": [
+    {
+      "path": "dist/littleduck.cjs.production.min.js",
+      "limit": "10 KB"
+    },
+    {
+      "path": "dist/littleduck.esm.js",
+      "limit": "10 KB"
+    }
+  ],
+  "devDependencies": {
+    "@size-limit/preset-small-lib": "^5.0.3",
+    "husky": "^7.0.2",
+    "size-limit": "^5.0.3",
+    "tsdx": "^0.14.1",
+    "tslib": "^2.3.1",
+    "typescript": "^4.4.2"
+  },
+  "dependencies": {
+    "mnemonist": "^0.38.3",
+    "ohm-js": "^15.5.0"
+  },
+  "./*": "./*",
+  "./": "./"
+}
